@@ -4,9 +4,14 @@ from .site import PHONE, PHONE_DISPLAY
 from .pricing import PRICING
 from ._data_deogyang import DONGS as _DEO_A
 from ._data_deogyang_b import DONGS as _DEO_B
-from ._data_ilsan import ILSANDONG as ILSANDONG_DONGS, ILSANSEO as ILSANSEO_DONGS
+from ._data_ild_a import DONGS as _ILD_A
+from ._data_ild_b import DONGS as _ILD_B
+from ._data_ils_a import DONGS as _ILS_A
+from ._data_ils_b import DONGS as _ILS_B
 
 DEO_DONGS = _DEO_A + _DEO_B
+ILSANDONG_DONGS = _ILD_A + _ILD_B
+ILSANSEO_DONGS = _ILS_A + _ILS_B
 
 _CTA = f"""
 <section class="cta">

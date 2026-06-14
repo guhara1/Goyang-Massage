@@ -2,10 +2,7 @@
 # 환승역도 URL은 하나만 사용한다. 출구별·역+테마 조합 페이지는 만들지 않는다.
 from .site import PHONE, PHONE_DISPLAY
 from .pricing import PRICING
-from ._data_stations import STATIONS as _ST_A
-from ._data_stations_b import STATIONS as _ST_B
-
-STATIONS = _ST_A + _ST_B
+from ._data_stations import STATIONS
 
 _CTA = f"""
 <section class="cta">
