@@ -24,6 +24,28 @@ from content.site import (BASE_URL, BRAND, NAV, PHONE, PHONE_DISPLAY, INDEXNOW_K
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MIN_INDEX_CHARS = 2000
 BUILD_DATE = datetime.date.today().isoformat()
+DESC_LIMIT = 80  # 네이버 권장 설명문 길이 (메타·OG 공통)
+
+
+def clip_desc(desc: str, limit: int = DESC_LIMIT) -> str:
+    """설명문을 자연스러운 경계에서 limit자 이내로 정리한다.
+    1순위: limit 안의 마지막 문장 끝('.') → 완결 문장 유지
+    2순위: limit 안의 마지막 구분(', ' '·' ' ') → … 부가
+    3순위: 단순 절단 → …"""
+    desc = " ".join(desc.split())
+    if len(desc) <= limit:
+        return desc
+    head = desc[:limit]
+    cut = head.rfind(". ")
+    if cut == -1 and head.endswith("."):
+        cut = len(head) - 2
+    if cut >= 45:                      # 첫 문장이 너무 짧으면 구분 절단으로
+        return head[:cut + 1]
+    for sep in (", ", " ", "·"):
+        p = head.rfind(sep)
+        if p >= 45:
+            return head[:p].rstrip(" ,·") + "…"
+    return head.rstrip(" ,·") + "…"
 
 
 def url_meta(path: str):
@@ -126,7 +148,7 @@ def render_toc(items) -> str:
 def render_page(page: dict) -> str:
     path = page["path"]
     title = page["title"]
-    desc = page["desc"]
+    desc = clip_desc(page["desc"])
     h1 = page["h1"]
     body = page["body"]
     crumbs = page.get("breadcrumb") or []
@@ -286,7 +308,7 @@ def build() -> None:
         chars = text_length(page["body"])
         noindex = page.get("noindex", False) or chars < MIN_INDEX_CHARS
         if not noindex:
-            indexable.append((path, page["title"], page["desc"]))
+            indexable.append((path, page["title"], clip_desc(page["desc"])))
         report.append((path or "/", chars, "noindex" if noindex else "index"))
 
     # ── sitemap.xml (lastmod·changefreq·priority 포함) ──
