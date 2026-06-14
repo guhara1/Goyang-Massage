@@ -68,3 +68,48 @@ python3 build.py     # → 저장소 루트에 정적 HTML 생성 + 글자수 �
 - **Build output directory**: `/`
 
 빌드 없이 올릴 경우 `python3 build.py` 결과(루트의 `index.html`, `goyang/`, `assets/` 등)를 그대로 업로드하면 됩니다.
+
+## 색인(인덱싱) 설정 — 네이버·구글·빙 빠른 색인
+
+빌드 시 자동 생성되는 파일:
+
+- `sitemap.xml` — 색인 페이지 86개, `lastmod`·`changefreq`·`priority` 포함
+- `rss.xml` — 전체 콘텐츠 피드(네이버·피드 색인 가속), 모든 페이지 `<head>`에 자동발견 링크 삽입
+- `robots.txt` — 두 사이트맵(`sitemap.xml`, `rss.xml`) 안내, 전 크롤러 허용
+- `<INDEXNOW_KEY>.txt` — IndexNow 소유 확인 키 파일 (루트)
+- 메인페이지 `<head>`에 네이버 사이트 소유확인 메타태그
+
+### 1. 네이버 서치어드바이저
+1. https://searchadvisor.naver.com → 사이트 등록 (`https://goyang-massage.pages.dev/`)
+2. 소유확인: **HTML 태그** 방식 — 메인페이지에 이미 메타태그가 삽입되어 있어 바로 확인됨
+3. 요청 → **사이트맵 제출**: `sitemap.xml`, 그리고 **RSS 제출**: `rss.xml`
+
+### 2. 구글 서치 콘솔
+1. https://search.google.com/search-console → 속성 추가(URL 접두어)
+2. 소유확인 후 **Sitemaps**에 `sitemap.xml` 제출
+   - 구글은 2023년부터 sitemap ping(자동 핑)을 폐지 → Search Console 제출이 표준
+3. 개별 URL 즉시 색인은 아래 Indexing API 사용
+
+### 3. IndexNow — 빙·네이버·Yandex 즉시 통보 (글 올릴 때마다)
+키 파일(`<KEY>.txt`)이 도메인 루트에 **배포된 뒤** 실행하세요.
+```bash
+python3 submit_indexnow.py                       # sitemap 전체 통보
+python3 submit_indexnow.py /goyang/.../baekseok-dong/   # 특정 글만
+```
+> IndexNow는 빙·네이버·Yandex·Seznam이 키를 공유하므로 한 번 전송으로 모두 통보됩니다.
+
+### 4. 구글 Indexing API (선택, 구글은 IndexNow 미참여)
+1. Google Cloud에서 **Indexing API** 사용 설정 → 서비스 계정 JSON 키 발급 → `google-sa.json` 으로 저장(깃 제외됨)
+2. Search Console 속성에 그 서비스 계정 이메일을 **소유자**로 추가
+3. `pip install google-auth requests` 후:
+```bash
+python3 submit_google_indexing.py     # sitemap 전체(일일 쿼터 200)
+```
+
+### 새 글/수정 후 권장 루틴
+```bash
+python3 build.py            # 재빌드(사이트맵·RSS 갱신)
+git add -A && git commit -m "..." && git push   # 배포
+python3 submit_indexnow.py  # 빙·네이버 즉시 통보
+python3 submit_google_indexing.py   # (선택) 구글 통보
+```

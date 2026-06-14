@@ -1,8 +1,10 @@
 # 메인 페이지 — 허브 역할. 모든 키워드를 밀어 넣지 않고 상세 페이지로 연결한다.
-from .site import BASE_URL, BRAND, PHONE, PHONE_DISPLAY
+from .site import BASE_URL, BRAND, PHONE, PHONE_DISPLAY, NAVER_VERIFY
 from .pricing import PRICING
 
-_JSONLD = f"""<script type="application/ld+json">
+_VERIFY = f'<meta name="naver-site-verification" content="{NAVER_VERIFY}">\n'
+
+_JSONLD = _VERIFY + f"""<script type="application/ld+json">
 {{
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",

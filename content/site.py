@@ -6,6 +6,12 @@ BRAND = "간다GO"
 PHONE = "0508-202-4719"
 PHONE_DISPLAY = "0508-202-4719"
 
+# 네이버 서치어드바이저 사이트 소유확인 토큰 (메인페이지 head)
+NAVER_VERIFY = "c7441ce68df262afabbb63a63a8395b11aa702d2"
+
+# IndexNow 키 — 루트에 <KEY>.txt 파일로도 함께 배포된다 (Bing·네이버·Yandex 즉시 색인 통보)
+INDEXNOW_KEY = "4a402da1ec024e0e9120eef6e3c355c77e73b34e34524e58ba081d0a77bdd021"
+
 # 상단 메뉴 — 하위 메뉴에는 키워드를 반복하지 않고 지역명·역명만 표시한다.
 NAV = [
     ("홈", "/", []),
