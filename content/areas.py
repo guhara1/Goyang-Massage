@@ -2,8 +2,11 @@
 # 숫자 행정동(화정1동, 행신2동 등) 개별 페이지는 만들지 않는다.
 from .site import PHONE, PHONE_DISPLAY
 from .pricing import PRICING
-from ._data_deogyang import DONGS as DEO_DONGS
+from ._data_deogyang import DONGS as _DEO_A
+from ._data_deogyang_b import DONGS as _DEO_B
 from ._data_ilsan import ILSANDONG as ILSANDONG_DONGS, ILSANSEO as ILSANSEO_DONGS
+
+DEO_DONGS = _DEO_A + _DEO_B
 
 _CTA = f"""
 <section class="cta">
