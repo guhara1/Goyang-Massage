@@ -16,7 +16,13 @@ BIZ_PHONE = "0508-202-4719"
 BIZ_PHONE_TEL = "0508-202-4719"
 SITE_URL = "https://goyang-massage.pages.dev"   # Cloudflare Pages 도메인
 SITE_TITLE = "고양 출장마사지｜고양시 홈타이 지역별 예약 안내"
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
+# 저장소 루트로 출력해 Cloudflare Pages 기본 설정(빌드 명령 없음)에서 바로 서비스
+OUT = os.path.dirname(os.path.abspath(__file__))
+
+# 재생성 시 정리할 생성물 (소스 파일은 보존)
+GENERATED_DIRS = ["goyang", "assets", "reservation", "notice", "guide",
+                  "contact", "privacy"]
+GENERATED_FILES = ["index.html", "sitemap.xml", "robots.txt"]
 
 # ──────────────────────────────────────────────────────────────────────────
 # 행정구
@@ -1127,8 +1133,15 @@ p{margin:10px 0}
 """
 
 def main():
-    if os.path.exists(OUT):
-        shutil.rmtree(OUT)
+    # 이전 생성물만 정리 (소스 파일 보존)
+    for d in GENERATED_DIRS:
+        p = os.path.join(OUT, d)
+        if os.path.isdir(p):
+            shutil.rmtree(p)
+    for fn in GENERATED_FILES:
+        p = os.path.join(OUT, fn)
+        if os.path.isfile(p):
+            os.remove(p)
     os.makedirs(OUT, exist_ok=True)
     os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
     with open(os.path.join(OUT, "assets", "style.css"), "w", encoding="utf-8") as f:

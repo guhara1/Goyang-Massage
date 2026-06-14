@@ -24,16 +24,24 @@
 ## 빌드
 
 ```bash
-python3 generate.py     # → public/ 에 정적 사이트 생성
+python3 generate.py     # → 저장소 루트에 정적 사이트 생성 (index.html, goyang/, assets/ ...)
 ```
 
-배포 전 `generate.py` 상단의 `SITE_URL` 값을 실제 도메인으로 변경하세요
-(canonical·OG·스키마·sitemap에 반영됩니다).
+생성물은 저장소 루트에 출력됩니다(소스 파일은 보존). `SITE_URL`은
+`https://goyang-massage.pages.dev`로 설정되어 canonical·OG·스키마·sitemap에 반영됩니다.
 
-## 배포
+## 배포 (Cloudflare Pages)
 
-`public/` 디렉터리를 그대로 정적 호스팅(Netlify, Cloudflare Pages, GitHub Pages 등)에
-도메인 루트로 올리면 됩니다. 내부 링크는 루트 절대경로(`/goyang/...`)를 사용합니다.
+정적 파일이 저장소 루트에 커밋되어 있어 **빌드 없이** 서비스됩니다.
+Cloudflare Pages에서 이 GitHub 저장소를 연결한 뒤:
+
+- **Production branch**: `main`
+- **Framework preset**: None
+- **Build command**: (비워둠)
+- **Build output directory**: `/`
+
+연결·배포가 끝나면 `https://goyang-massage.pages.dev/` 에서 열립니다.
+내부 링크는 루트 절대경로(`/goyang/...`)를 사용합니다.
 
 ## 콘텐츠 정책
 
