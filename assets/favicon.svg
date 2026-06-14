@@ -2,13 +2,5 @@
   <circle cx="256" cy="256" r="246" fill="#0a1120"/>
   <circle cx="256" cy="256" r="237" fill="none" stroke="#c8a25e" stroke-width="18"/>
   <circle cx="256" cy="256" r="208" fill="none" stroke="#c8a25e" stroke-opacity="0.35" stroke-width="4"/>
-  <g fill="#e9d7ab">
-    <rect x="172" y="158" width="54" height="196"/>
-    <rect x="286" y="158" width="54" height="196"/>
-    <path d="M172 158 L226 158 L340 354 L286 354 Z"/>
-    <rect x="158" y="158" width="82" height="12"/>
-    <rect x="158" y="342" width="82" height="12"/>
-    <rect x="272" y="158" width="82" height="12"/>
-    <rect x="272" y="342" width="82" height="12"/>
-  </g>
+  <text x="256" y="262" fill="#e9d7ab" font-family="'Noto Serif KR','Times New Roman',serif" font-size="248" font-weight="700" text-anchor="middle" dominant-baseline="central">G</text>
 </svg>
