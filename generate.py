@@ -14,7 +14,7 @@ import shutil
 BIZ_NAME = "간다GO"
 BIZ_PHONE = "0508-202-4719"
 BIZ_PHONE_TEL = "0508-202-4719"
-SITE_URL = "https://goyang-massage.kr"   # ← 실제 도메인으로 교체
+SITE_URL = "https://goyang-massage.pages.dev"   # Cloudflare Pages 도메인
 SITE_TITLE = "고양 출장마사지｜고양시 홈타이 지역별 예약 안내"
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
 
