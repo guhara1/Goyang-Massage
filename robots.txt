@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://goyang-massage.pages.dev/sitemap.xml
-Sitemap: https://goyang-massage.pages.dev/rss.xml
+Sitemap: https://goyang-massage.netlify.app/sitemap.xml
+Sitemap: https://goyang-massage.netlify.app/rss.xml

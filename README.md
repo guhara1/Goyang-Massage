@@ -5,7 +5,7 @@
 
 - 상호: **간다GO**
 - 예약전화: **0508-202-4719**
-- 배포 도메인: https://goyang-massage.pages.dev
+- 배포 도메인: https://goyang-massage.netlify.app
 
 ## 페이지 구성 (총 88페이지 · 색인 86)
 
@@ -80,7 +80,7 @@ python3 build.py     # → 저장소 루트에 정적 HTML 생성 + 글자수 �
 - 메인페이지 `<head>`에 네이버 사이트 소유확인 메타태그
 
 ### 1. 네이버 서치어드바이저
-1. https://searchadvisor.naver.com → 사이트 등록 (`https://goyang-massage.pages.dev/`)
+1. https://searchadvisor.naver.com → 사이트 등록 (`https://goyang-massage.netlify.app/`)
 2. 소유확인: **HTML 태그** 방식 — 메인페이지에 이미 메타태그가 삽입되어 있어 바로 확인됨
 3. 요청 → **사이트맵 제출**: `sitemap.xml`, 그리고 **RSS 제출**: `rss.xml`
 

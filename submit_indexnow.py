@@ -4,7 +4,7 @@
 사용법:
   python3 submit_indexnow.py                # sitemap.xml 의 전체 URL 통보
   python3 submit_indexnow.py /goyang/ilsandong-gu/baekseok-dong/   # 특정 경로만
-  python3 submit_indexnow.py https://goyang-massage.pages.dev/...  # 전체 URL도 가능
+  python3 submit_indexnow.py https://goyang-massage.netlify.app/...  # 전체 URL도 가능
 
 동작: 루트의 <KEY>.txt 가 배포되어 있어야 검색엔진이 소유권을 확인한다(빌드가 자동 생성).
 외부 라이브러리 없이 표준 라이브러리(urllib)만 사용한다.
